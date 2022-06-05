@@ -1,3 +1,18 @@
+import { open } from "fs/promises";
+
 export const read = async () => {
-    // Write your code here 
+  try {
+    const file = await open("./src/streams/files/fileToRead.txt");
+    const stream = file.createReadStream();
+    stream.pipe(process.stdout);
+    // setTimeout(() => {
+    //   stream.close();
+    //   stream.push(null);
+    //   stream.read(0);
+    // }, 100);
+  } catch (error) {
+      console.log(error);
+  }
 };
+
+read();
